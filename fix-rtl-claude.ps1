@@ -17,18 +17,18 @@ if ($Help) {
     exit 0
 }
 
-# RTL CSS without font
+# Auto-detect RTL/LTR CSS without font
+# Uses unicode-bidi:plaintext so direction is auto-detected per element based on content
+# Persian/Arabic text -> RTL, English/Latin text -> LTR (no forced RTL)
 $RTL_CSS_BASE = @"
-html,body{direction:rtl;text-align:right}
-p:not([class*="diff"]):not([class*="Diff"]):not([class*="code"]):not([class*="Code"]),span:not([class*="diff"]):not([class*="Diff"]):not([class*="code"]):not([class*="Code"]),div:not([class*="diff"]):not([class*="Diff"]):not([class*="code"]):not([class*="Code"]):not([class*="monaco"]),li,ul,ol,input,textarea,[contenteditable],[contenteditable="true"]{direction:rtl;text-align:right;unicode-bidi:isolate}
+p:not([class*="diff"]):not([class*="Diff"]):not([class*="code"]):not([class*="Code"]),div:not([class*="diff"]):not([class*="Diff"]):not([class*="code"]):not([class*="Code"]):not([class*="monaco"]),li,ul,ol,input,textarea,[contenteditable],[contenteditable="true"]{unicode-bidi:plaintext;text-align:start}
 pre,code,[class*="diff"],[class*="Diff"],[class*="code"],[class*="Code"],[class*="monaco"],[class*="editor"]{direction:ltr!important;text-align:left!important;unicode-bidi:isolate}
 "@
 
-# RTL CSS with Vazirmatn font
+# Auto-detect RTL/LTR CSS with Vazirmatn font
 $RTL_CSS_WITH_FONT = @"
 *{font-family:"Vazirmatn","SF Mono",Monaco,"Courier New",monospace!important}
-html,body{direction:rtl;text-align:right}
-p:not([class*="diff"]):not([class*="Diff"]):not([class*="code"]):not([class*="Code"]),span:not([class*="diff"]):not([class*="Diff"]):not([class*="code"]):not([class*="Code"]),div:not([class*="diff"]):not([class*="Diff"]):not([class*="code"]):not([class*="Code"]):not([class*="monaco"]),li,ul,ol,input,textarea,[contenteditable],[contenteditable="true"]{direction:rtl;text-align:right;unicode-bidi:isolate}
+p:not([class*="diff"]):not([class*="Diff"]):not([class*="code"]):not([class*="Code"]),div:not([class*="diff"]):not([class*="Diff"]):not([class*="code"]):not([class*="Code"]):not([class*="monaco"]),li,ul,ol,input,textarea,[contenteditable],[contenteditable="true"]{unicode-bidi:plaintext;text-align:start}
 pre,code,[class*="diff"],[class*="Diff"],[class*="code"],[class*="Code"],[class*="monaco"],[class*="editor"]{direction:ltr!important;text-align:left!important;unicode-bidi:isolate}
 "@
 
